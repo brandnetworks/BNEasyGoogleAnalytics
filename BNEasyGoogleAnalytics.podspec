@@ -10,12 +10,12 @@
 Pod::Spec.new do |s|
   s.name             = "BNEasyGoogleAnalytics"
   s.version          = "0.1.0"
-  s.summary          = "A short description of BNEasyGoogleAnalytics."
+  s.summary          = "An objective-c wrapper for Google's Analytics API, with a more fluent interface"
   s.description      = <<-DESC
-                       An optional longer description of BNEasyGoogleAnalytics
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+                       BNEasyGoogleAnalytics is a wrapper around the default GoogleAnalytics iOS SDK, providing
+                       a slightly restricted subset of the features it offers with a much more native interface.
+                       Say goodbye to GAIDictionaryBuilder, and hello to an analytics interface that feels like
+                       it was actually written by a developer who had used Objective-C before.
                        DESC
   s.homepage         = "https://github.com/brandnetworks/BNEasyGoogleAnalytics"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
