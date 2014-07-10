@@ -1,0 +1,20 @@
+PODS:
+  - BNEasyGoogleAnalytics (0.1.0)
+  - Expecta (0.3.1)
+  - Specta (0.2.1)
+
+DEPENDENCIES:
+  - BNEasyGoogleAnalytics (from `../`)
+  - Expecta
+  - Specta (~> 0.2.1)
+
+EXTERNAL SOURCES:
+  BNEasyGoogleAnalytics:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BNEasyGoogleAnalytics: 5ce8be2ea4e581c3556613c9068accbc58dcdc8d
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+
+COCOAPODS: 0.33.1

@@ -24,5 +24,5 @@ Ben Nicholas, bn@bn.co
 
 ## License
 
-BNEasyGoogleAnalytics is available under the MIT license. See the LICENSE file for more info.
+BNEasyGoogleAnalytics is available under the apache license. See the LICENSE file for more info.
 
