@@ -73,6 +73,25 @@
                                                                    withFatal:fatal] build]];
 }
 
+- (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target
+{
+    [self.tracker send:[[GAIDictionaryBuilder createSocialWithNetwork:network
+                                                               action:action
+                                                               target:target] build]];
+}
+
+#pragma mark - Social sharing
+
+- (void)trackTweetToTarget:(NSString *)target
+{
+    [self trackSocialActivityWithNetwork:@"Twitter" andAction:@"Tweet" toTarget:target];
+}
+
+- (void)trackLikeToTarget:(NSString *)target
+{
+    [self trackSocialActivityWithNetwork:@"Facebook" andAction:@"Like" toTarget:target];
+}
+
 #pragma mark - Properties
 
 - (void)setTracksUncaughtExceptions:(BOOL)tracksUncaughtExceptions

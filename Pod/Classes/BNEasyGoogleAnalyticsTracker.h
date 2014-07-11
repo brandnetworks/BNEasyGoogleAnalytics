@@ -19,6 +19,11 @@
 - (void)trackEventWithCategory:(NSString *)category andAction:(NSString *)action andLabel:(NSString *)label andValue:(NSNumber *)value;
 - (void)trackScreenNamed:(NSString *)screenName;
 - (void)trackExceptionWithMessage:(NSString *)message andFatal:(NSNumber *)fatal;
+- (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target;
+
+- (void)trackTweetToTarget:(NSString *)target;
+- (void)trackLikeToTarget:(NSString *)target;
+// Add aditional methods in here for different actions
 
 - (void)sync;
 
