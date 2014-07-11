@@ -8,7 +8,10 @@
 
 #import "objc/runtime.h"
 #import <BNEasyGoogleAnalytics/BNEasyGoogleAnalyticsTracker.h>
+#import <BNEasyGoogleAnalytics/BNEasyGoogleAnalyticsTracker_private.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
+#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
 void SwizzleClassMethod(Class c, SEL orig, SEL new) {
     
@@ -68,6 +71,48 @@ describe(@"Easy Google Analytics Tracker", ^{
         
         it(@"Should return the same instance across calls", ^{
             expect([BNEasyGoogleAnalyticsTracker sharedTracker]).to.beIdenticalTo([BNEasyGoogleAnalyticsTracker sharedTracker]);
+        });
+    });
+    
+    context(@"Tracking", ^{
+        
+        BNEasyGoogleAnalyticsTracker *__block commonTracker;
+        id<GAITracker> __block mockGAITracker;
+        
+        beforeEach(^{
+            mockGAITracker = mockProtocol(@protocol(GAITracker));
+            commonTracker = [[BNEasyGoogleAnalyticsTracker alloc] initWithTracker:mockGAITracker];
+        });
+        
+        context(@"Events", ^{
+            it(@"Should send a predictable dictionary to the tracker", ^{
+                // setup
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createEventWithCategory:@"Category"
+                                                                                   action:@"Action"
+                                                                                    label:@"Label"
+                                                                                    value:@42] build];
+                
+                // exercise
+                [commonTracker trackEventWithCategory:@"Category"
+                                            andAction:@"Action"
+                                             andLabel:@"Label"
+                                             andValue:@42];
+                
+                // verify
+                [verify(mockGAITracker) send:resultDict];
+                
+                // teardown
+            });
+        });
+        context(@"Exception", ^{
+            it(@"Should send a predictable dictionary to the tracker", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createExceptionWithDescription:@"Message"
+                                                                                       withFatal:@NO] build];
+                
+                [commonTracker trackExceptionWithMessage:@"Message" andFatal:NO];
+                
+                [verify(mockGAITracker) send:resultDict];
+            });
         });
     });
     

@@ -7,17 +7,10 @@
 //
 
 #import "BNEasyGoogleAnalyticsTracker.h"
+#import "BNEasyGoogleAnalyticsTracker_private.h"
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
-
-@interface BNEasyGoogleAnalyticsTracker ()
-
-@property (nonatomic, strong) id<GAITracker> tracker;
-
-- (instancetype)initWithTracker:(id)tracker;
-
-@end
 
 @implementation BNEasyGoogleAnalyticsTracker
 
@@ -67,10 +60,10 @@
     [self.tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
-- (void)trackExceptionWithMessage:(NSString *)message andFatal:(NSNumber *)fatal
+- (void)trackExceptionWithMessage:(NSString *)message andFatal:(BOOL)fatal
 {
     [self.tracker send:[[GAIDictionaryBuilder createExceptionWithDescription:message
-                                                                   withFatal:fatal] build]];
+                                                                   withFatal:@(fatal)] build]];
 }
 
 - (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target
