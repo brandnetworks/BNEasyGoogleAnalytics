@@ -1,5 +1,7 @@
 reference: http://www.objc.io/issue-6/travis-ci.html
 language: objective-c
-cache: bundler
-script:
+before_install:
+    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+    - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
+script: 
 - xctool test -workspace Example/BNEasyGoogleAnalytics.xcworkspace -scheme BNEasyGoogleAnalytics -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
