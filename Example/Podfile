@@ -5,6 +5,7 @@ end
 target 'Tests', :exclusive => true do
   pod "BNEasyGoogleAnalytics", :path => "../"
 
+  pod 'OCMockito', '~> 1.0'
   pod 'Specta', '~> 0.2.1'
   pod 'Expecta'
 end
