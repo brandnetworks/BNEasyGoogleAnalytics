@@ -1,5 +1,5 @@
 PODS:
-  - BNEasyGoogleAnalytics (0.1.0):
+  - BNEasyGoogleAnalytics (0.2.0):
     - GoogleAnalytics-iOS-SDK (~> 3.0)
   - Expecta (0.3.1)
   - GoogleAnalytics-iOS-SDK (3.0.7)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BNEasyGoogleAnalytics: 38f0052726c4be55d09e388604d36961f1161e1c
+  BNEasyGoogleAnalytics: a8f0add9e80241aa04caf9db4652eb83a8412029
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
   OCHamcrest: b464725bbb48d0f1cd9c6f4ec3cb35fe0c4f2b94
