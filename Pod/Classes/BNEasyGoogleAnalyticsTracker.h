@@ -114,6 +114,18 @@ extern NSString *const kLikeSocialAction;
  *  @param label    The label for the timed event. May be nil.
  */
 - (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
+/**
+ *  Track time spent working in a block.
+ *
+ *  This method allows you to track how long it takes to perform a given action. This variant is used when the time taken is 
+ *  determined by the amount of time spent synchronously in a block.
+ *
+ *  @param block    The block to time.
+ *  @param category The category of the timed event.
+ *  @param name     The name of the timed event. May be nil.
+ *  @param lable    The label for the timed event. May be nil.
+ */
+- (void)trackTimeSpentInBlock:(void (^)())block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
 
 /**
  *  Track a Tweet to Google Analytics.

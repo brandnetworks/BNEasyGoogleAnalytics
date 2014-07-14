@@ -86,6 +86,18 @@ NSString *const kLikeSocialAction = @"Like";
                                                                  label:label] build]];
 }
 
+- (void) trackTimeSpentInBlock:(void (^)())block withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label
+{
+    NSDate *date = [NSDate date];
+    block();
+    double timepassed_ms = [date timeIntervalSinceNow] * -1000.0;
+    
+    [self.tracker send:[[GAIDictionaryBuilder createTimingWithCategory:category
+                                                              interval:@(timepassed_ms)
+                                                                  name:name
+                                                                 label:label] build]];
+}
+
 #pragma mark - Social sharing
 
 - (void)trackTweetToTarget:(NSString *)target
