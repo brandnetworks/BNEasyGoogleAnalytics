@@ -4,4 +4,4 @@ before_install:
     - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
     - cd Example && pod install && cd $TRAVIS_BUILD_DIR
 script: 
-- xctool test -workspace Example/BNEasyGoogleAnalytics.xcworkspace -scheme BNEasyGoogleAnalytics -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool test -workspace Example/BNEasyGoogleAnalytics.xcworkspace -scheme BNEasyGoogleAnalytics -sdk iphonesimulator7.1 ONLY_ACTIVE_ARCH=NO
