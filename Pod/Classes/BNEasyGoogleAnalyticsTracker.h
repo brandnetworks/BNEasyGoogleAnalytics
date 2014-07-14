@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kTwitterSocialNetwork;
+extern NSString *const kFacebookSocialNetwork;
+extern NSString *const kTweetSocialAction;
+extern NSString *const kLikeSocialAction;
+
 @interface BNEasyGoogleAnalyticsTracker : NSObject
 
 @property (nonatomic, assign) BOOL tracksUncaughtExceptions;

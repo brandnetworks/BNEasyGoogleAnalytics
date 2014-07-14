@@ -12,6 +12,11 @@
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
+NSString *const kTwitterSocialNetwork = @"Twitter";
+NSString *const kFacebookSocialNetwork = @"Facebook";
+NSString *const kTweetSocialAction = @"Tweet";
+NSString *const kLikeSocialAction = @"Like";
+
 @implementation BNEasyGoogleAnalyticsTracker
 
 - (instancetype)initWithTracker:(id)tracker
@@ -77,12 +82,12 @@
 
 - (void)trackTweetToTarget:(NSString *)target
 {
-    [self trackSocialActivityWithNetwork:@"Twitter" andAction:@"Tweet" toTarget:target];
+    [self trackSocialActivityWithNetwork:kTwitterSocialNetwork andAction:kTweetSocialAction toTarget:target];
 }
 
 - (void)trackLikeToTarget:(NSString *)target
 {
-    [self trackSocialActivityWithNetwork:@"Facebook" andAction:@"Like" toTarget:target];
+    [self trackSocialActivityWithNetwork:kFacebookSocialNetwork andAction:kLikeSocialAction toTarget:target];
 }
 
 #pragma mark - Properties

@@ -104,6 +104,7 @@ describe(@"Easy Google Analytics Tracker", ^{
                 // teardown
             });
         });
+        
         context(@"Exception", ^{
             it(@"Should construct a Google Analytics exception report with the given values", ^{
                 NSDictionary *resultDict = [[GAIDictionaryBuilder createExceptionWithDescription:@"Message"
@@ -114,6 +115,7 @@ describe(@"Easy Google Analytics Tracker", ^{
                 [verify(mockGAITracker) send:resultDict];
             });
         });
+        
         context(@"Screen", ^{
             it(@"Should track a screen to Google Analytics", ^{
                 NSDictionary *resultDict = [[GAIDictionaryBuilder createAppView] build];
@@ -122,6 +124,40 @@ describe(@"Easy Google Analytics Tracker", ^{
                 
                 [verify(mockGAITracker) send:resultDict];
                 [verify(mockGAITracker) set:kGAIScreenName value:@"Screen"];
+            });
+        });
+        
+        context(@"Social", ^{
+            it(@"Should construct a Google Analytics social report with the given values", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createSocialWithNetwork:@"Network"
+                                                                                   action:@"Action"
+                                                                                   target:@"Target"] build];
+                
+                [commonTracker trackSocialActivityWithNetwork:@"Network"
+                                                    andAction:@"Action"
+                                                     toTarget:@"Target"];
+                
+                [verify(mockGAITracker) send:resultDict];
+            });
+            
+            it(@"Should track tweets to Google Analytics", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createSocialWithNetwork:kTwitterSocialNetwork
+                                                                                   action:kTweetSocialAction
+                                                                                   target:@"Target"] build];
+                
+                [commonTracker trackTweetToTarget:@"Target"];
+                
+                [verify(mockGAITracker) send:resultDict];
+            });
+            
+            it(@"Should track likes to Google Analytics", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createSocialWithNetwork:kFacebookSocialNetwork
+                                                                                   action:kLikeSocialAction
+                                                                                   target:@"Target"] build];
+                
+                [commonTracker trackLikeToTarget:@"Target"];
+                
+                [verify(mockGAITracker) send:resultDict];
             });
         });
     });
