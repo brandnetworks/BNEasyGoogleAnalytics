@@ -179,6 +179,19 @@ describe(@"Easy Google Analytics Tracker", ^{
                 [verify(mockGAITracker) send:resultDict];
             });
         });
+        
+        context(@"Timing", ^{
+            it(@"Should track time taken when time is provided", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createTimingWithCategory:@"Category"
+                                                                                  interval:@42.0
+                                                                                      name:@"Name"
+                                                                                     label:@"Label"] build];
+                
+                [commonTracker trackTimePeriod:@42.0 withCategory:@"Category" forName:@"Name" andLabel:@"Label"];
+                
+                [verify(mockGAITracker) send:resultDict];
+            });
+        });
     });
     
 

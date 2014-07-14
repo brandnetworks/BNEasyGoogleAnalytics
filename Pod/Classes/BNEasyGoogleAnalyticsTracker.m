@@ -78,6 +78,14 @@ NSString *const kLikeSocialAction = @"Like";
                                                                target:target] build]];
 }
 
+- (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label
+{
+    [self.tracker send:[[GAIDictionaryBuilder createTimingWithCategory:category
+                                                              interval:timing
+                                                                  name:name
+                                                                 label:label] build]];
+}
+
 #pragma mark - Social sharing
 
 - (void)trackTweetToTarget:(NSString *)target

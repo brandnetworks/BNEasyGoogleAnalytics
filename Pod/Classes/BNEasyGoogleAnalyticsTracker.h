@@ -102,6 +102,18 @@ extern NSString *const kLikeSocialAction;
  *  @param target  The content the action is being taken on. May be nil.
  */
 - (void)trackSocialActivityWithNetwork:(NSString *)network andAction:(NSString *)action toTarget:(NSString *)target;
+/**
+ *  Track time spent performing an action.
+ *
+ *  This method allows you to track how long it takes to perform a given action. This variant is used when the time taken is
+ *  determined externally.
+ *
+ *  @param timing   The timing measurement in milliseconds.
+ *  @param category The category of the timed event.
+ *  @param name The Name of the timed event.
+ *  @param label    The label for the timed event.
+ */
+- (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
 
 /**
  *  Track a Tweet to Google Analytics.
