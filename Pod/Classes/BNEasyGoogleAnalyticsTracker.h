@@ -110,8 +110,8 @@ extern NSString *const kLikeSocialAction;
  *
  *  @param timing   The timing measurement in milliseconds.
  *  @param category The category of the timed event.
- *  @param name The Name of the timed event.
- *  @param label    The label for the timed event.
+ *  @param name     The name of the timed event. May be nil.
+ *  @param label    The label for the timed event. May be nil.
  */
 - (void)trackTimePeriod:(NSNumber *)timing withCategory:(NSString *)category forName:(NSString *)name andLabel:(NSString *)label;
 
