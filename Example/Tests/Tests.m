@@ -85,7 +85,7 @@ describe(@"Easy Google Analytics Tracker", ^{
         });
         
         context(@"Events", ^{
-            it(@"Should send a predictable dictionary to the tracker", ^{
+            it(@"Should construct a Google Analytics event with the given values", ^{
                 // setup
                 NSDictionary *resultDict = [[GAIDictionaryBuilder createEventWithCategory:@"Category"
                                                                                    action:@"Action"
@@ -105,13 +105,23 @@ describe(@"Easy Google Analytics Tracker", ^{
             });
         });
         context(@"Exception", ^{
-            it(@"Should send a predictable dictionary to the tracker", ^{
+            it(@"Should construct a Google Analytics exception report with the given values", ^{
                 NSDictionary *resultDict = [[GAIDictionaryBuilder createExceptionWithDescription:@"Message"
                                                                                        withFatal:@NO] build];
                 
                 [commonTracker trackExceptionWithMessage:@"Message" andFatal:NO];
                 
                 [verify(mockGAITracker) send:resultDict];
+            });
+        });
+        context(@"Screen", ^{
+            it(@"Should track a screen to Google Analytics", ^{
+                NSDictionary *resultDict = [[GAIDictionaryBuilder createAppView] build];
+                
+                [commonTracker trackScreenNamed:@"Screen"];
+                
+                [verify(mockGAITracker) send:resultDict];
+                [verify(mockGAITracker) set:kGAIScreenName value:@"Screen"];
             });
         });
     });
