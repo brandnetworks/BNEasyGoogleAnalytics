@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BNEasyGoogleAnalytics"
-  s.version          = "0.2.0"
+  s.version          = "0.2.1"
   s.summary          = "An objective-c wrapper for Google's Analytics API, with a more fluent interface"
   s.description      = <<-DESC
                        BNEasyGoogleAnalytics is a wrapper around the default GoogleAnalytics iOS SDK, providing
