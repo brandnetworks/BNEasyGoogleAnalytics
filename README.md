@@ -1,6 +1,6 @@
 # BNEasyGoogleAnalytics
 
-[![CI Status](http://img.shields.io/travis/Ben Nicholas/BNEasyGoogleAnalytics.svg?style=flat)](https://travis-ci.org/Ben Nicholas/BNEasyGoogleAnalytics)
+[![CI Status](http://img.shields.io/travis/brandnetworks/BNEasyGoogleAnalytics.svg?style=flat)](https://travis-ci.org/Ben Nicholas/BNEasyGoogleAnalytics)
 [![Version](https://img.shields.io/cocoapods/v/BNEasyGoogleAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/BNEasyGoogleAnalytics)
 [![License](https://img.shields.io/cocoapods/l/BNEasyGoogleAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/BNEasyGoogleAnalytics)
 [![Platform](https://img.shields.io/cocoapods/p/BNEasyGoogleAnalytics.svg?style=flat)](http://cocoadocs.org/docsets/BNEasyGoogleAnalytics)
