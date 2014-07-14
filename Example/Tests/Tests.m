@@ -209,6 +209,26 @@ describe(@"Easy Google Analytics Tracker", ^{
                 expect(returnDict[kGAITimingLabel]).to.equal(@"Label");
                 expect(returnDict[kGAIHitType]).to.equal(kGAITiming);
             });
+            it(@"Should track time spent in an asynchronous block", ^AsyncBlock {
+                [commonTracker trackAsyncTimeSpentInBlock:^(void (^send)(void)) {
+                    [NSThread sleepForTimeInterval:1];
+                    send();
+                    
+                    MKTArgumentCaptor *argument = [[MKTArgumentCaptor alloc] init];
+                    [verify(mockGAITracker) send:[argument capture]];
+                    
+                    NSDictionary *returnDict = [argument value];
+                    expect([returnDict[kGAITimingValue] integerValue]).to.beCloseToWithin(1000, 100);
+                    expect(returnDict[kGAITimingCategory]).to.equal(@"Category");
+                    expect(returnDict[kGAITimingVar]).to.equal(@"Name");
+                    expect(returnDict[kGAITimingLabel]).to.equal(@"Label");
+                    expect(returnDict[kGAIHitType]).to.equal(kGAITiming);
+                    done();
+                }
+                                             withCategory:@"Category"
+                                                  forName:@"Name"
+                                                 andLabel:@"Label"];
+            });
         });
     });
     
