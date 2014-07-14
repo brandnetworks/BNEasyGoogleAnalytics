@@ -47,21 +47,40 @@ SpecBegin(TrackerSpec)
 
 describe(@"Easy Google Analytics Tracker", ^{
     
-    context(@"Setup", ^{
-        it(@"should call into the google analytics setup method", ^{
-            // setup
-            sharedGAIMock = mock([GAI class]);
-            SwizzleClassMethod([GAI class], @selector(sharedInstance), @selector(xxx_sharedInstance));
+    context(@"Mocked GAI", ^{
+            beforeAll(^{
+                // setup
+                sharedGAIMock = mock([GAI class]);
+                SwizzleClassMethod([GAI class], @selector(sharedInstance), @selector(xxx_sharedInstance));
+            });
+        
+            context(@"Setup", ^{
+                it(@"should call into the google analytics setup method", ^{
+                    // exercise
+                    [BNEasyGoogleAnalyticsTracker startWithTrackingId:@"tracking-hello"];
+                
+                    // verify
+                    [verify(sharedGAIMock) trackerWithTrackingId:@"tracking-hello"];
+                
+                });
+            });
             
-            // exercise
-            [BNEasyGoogleAnalyticsTracker startWithTrackingId:@"tracking-hello"];
+            context(@"Manual syncing", ^{
+                it(@"Should allow for manually syncing to Google Analytics", ^{
+                    id<GAITracker> mockGAITracker = mockProtocol(@protocol(GAITracker));
+                    BNEasyGoogleAnalyticsTracker *commonTracker = [[BNEasyGoogleAnalyticsTracker alloc] initWithTracker:mockGAITracker];
+                    
+                    [commonTracker sync];
+                    
+                    [(GAI *)verify(sharedGAIMock) dispatch];
+                });
+            });
             
-            // verify
-            [verify(sharedGAIMock) trackerWithTrackingId:@"tracking-hello"];
-            
-            // teardown
-            SwizzleClassMethod([GAI class], @selector(sharedInstance), @selector(xxx_sharedInstance));
-        });
+            afterAll(^{
+                // teardown
+                SwizzleClassMethod([GAI class], @selector(sharedInstance), @selector(xxx_sharedInstance));
+            });
+
     });
     
     context(@"Shared Instance", ^{
@@ -161,6 +180,8 @@ describe(@"Easy Google Analytics Tracker", ^{
             });
         });
     });
+    
+
     
 });
 
